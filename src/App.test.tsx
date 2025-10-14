@@ -1,10 +1,13 @@
 import { describe, expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import App from './routes/__root.tsx'
+import { Route } from './routes/__root.tsx'
 
-describe('App', () => {
+const DefaultComponent = () => <div>Component Not Found</div>
+const { component: RootComponent = DefaultComponent } = Route.options
+
+describe('Root', () => {
   test('renders', () => {
-    render(<App />)
+    render(<RootComponent />)
     expect(screen.getByText('Learn React')).toBeDefined()
   })
 })

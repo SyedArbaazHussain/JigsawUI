@@ -9,16 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as HomeRouteImport } from './routes/Home'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsIndexRouteImport } from './routes/About-Us/index'
-import { Route as AboutUsNewAboutRouteImport } from './routes/About-Us/new-about'
+import { Route as AboutUsContributorsRouteImport } from './routes/About-Us/contributors'
 
-const HomeRoute = HomeRouteImport.update({
-  id: '/Home',
-  path: '/Home',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -29,55 +23,44 @@ const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
   path: '/About-Us/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutUsNewAboutRoute = AboutUsNewAboutRouteImport.update({
-  id: '/About-Us/new-about',
-  path: '/About-Us/new-about',
+const AboutUsContributorsRoute = AboutUsContributorsRouteImport.update({
+  id: '/About-Us/contributors',
+  path: '/About-Us/contributors',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/Home': typeof HomeRoute
-  '/About-Us/new-about': typeof AboutUsNewAboutRoute
+  '/About-Us/contributors': typeof AboutUsContributorsRoute
   '/About-Us': typeof AboutUsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/Home': typeof HomeRoute
-  '/About-Us/new-about': typeof AboutUsNewAboutRoute
+  '/About-Us/contributors': typeof AboutUsContributorsRoute
   '/About-Us': typeof AboutUsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/Home': typeof HomeRoute
-  '/About-Us/new-about': typeof AboutUsNewAboutRoute
+  '/About-Us/contributors': typeof AboutUsContributorsRoute
   '/About-Us/': typeof AboutUsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Home' | '/About-Us/new-about' | '/About-Us'
+  fullPaths: '/' | '/About-Us/contributors' | '/About-Us'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Home' | '/About-Us/new-about' | '/About-Us'
-  id: '__root__' | '/' | '/Home' | '/About-Us/new-about' | '/About-Us/'
+  to: '/' | '/About-Us/contributors' | '/About-Us'
+  id: '__root__' | '/' | '/About-Us/contributors' | '/About-Us/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HomeRoute: typeof HomeRoute
-  AboutUsNewAboutRoute: typeof AboutUsNewAboutRoute
+  AboutUsContributorsRoute: typeof AboutUsContributorsRoute
   AboutUsIndexRoute: typeof AboutUsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/Home': {
-      id: '/Home'
-      path: '/Home'
-      fullPath: '/Home'
-      preLoaderRoute: typeof HomeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -92,11 +75,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutUsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/About-Us/new-about': {
-      id: '/About-Us/new-about'
-      path: '/About-Us/new-about'
-      fullPath: '/About-Us/new-about'
-      preLoaderRoute: typeof AboutUsNewAboutRouteImport
+    '/About-Us/contributors': {
+      id: '/About-Us/contributors'
+      path: '/About-Us/contributors'
+      fullPath: '/About-Us/contributors'
+      preLoaderRoute: typeof AboutUsContributorsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -104,8 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HomeRoute: HomeRoute,
-  AboutUsNewAboutRoute: AboutUsNewAboutRoute,
+  AboutUsContributorsRoute: AboutUsContributorsRoute,
   AboutUsIndexRoute: AboutUsIndexRoute,
 }
 export const routeTree = rootRouteImport
